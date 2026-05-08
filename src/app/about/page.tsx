@@ -13,7 +13,9 @@ export default function AboutPage() {
         Our story
       </p>
       <h1 className="font-display mt-3 text-4xl leading-tight md:text-5xl">
-        A small studio, a tight edit, a piece you keep.
+        A small studio,{" "}
+        <span className="font-italic-accent italic">a tight edit</span>, a
+        piece you keep.
       </h1>
 
       <div className="mt-10 space-y-6 text-base leading-relaxed text-foreground/85">

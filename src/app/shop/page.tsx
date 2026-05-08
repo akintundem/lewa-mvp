@@ -33,7 +33,9 @@ export default async function ShopPage({
         <p className="text-xs tracking-[0.3em] uppercase text-muted">
           The edit
         </p>
-        <h1 className="font-display mt-2 text-4xl md:text-5xl">All bracelets</h1>
+        <h1 className="font-display mt-2 text-4xl md:text-5xl">
+          All <span className="font-italic-accent italic">bracelets</span>
+        </h1>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
           A small, considered catalogue. Each piece is finished by hand in our
           studio.

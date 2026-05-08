@@ -68,35 +68,18 @@ export default function HomePage() {
         />
 
         <div className="relative mx-auto max-w-7xl px-6 pt-14 pb-20 md:pt-20 md:pb-28">
-          {/* Two-column section header */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
-              <p className="caps text-[10px] text-[#3a1d0a]/70">
-                The Spring Edit · 2026
-              </p>
-              <h1 className="mt-3 font-sans text-[44px] font-bold leading-[0.98] tracking-[-0.02em] text-[#2a1409] md:text-[72px]">
-                View our
-                <br />
-                latest works
-              </h1>
-            </div>
-            <p className="max-w-md text-[15px] italic leading-relaxed text-[#2a1409]/85 md:col-span-5 md:text-[17px]">
-              We tried to design a new style to view our new bracelets — to be
-              more different than ever.
-            </p>
-          </div>
 
           {/* Black inner panel with thin cream-peach hairline border */}
-          <div className="relative mt-10 overflow-hidden rounded-[28px] bg-noir p-6 ring-1 ring-[#f0d6b8]/35 md:mt-14 md:p-12">
+          <div className="relative mt-4 overflow-hidden rounded-[28px] bg-noir p-6 ring-1 ring-[#f0d6b8]/35 md:mt-14 md:p-12">
             {/* Inside-panel header */}
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <p className="max-w-[20rem] text-[12px] italic leading-relaxed text-white/65 md:text-[13.5px]">
-                Lewa&apos;s combination of statement and simplistic style helps
-                create a look that&apos;s as unique as you are.
+              <p className="font-italic-accent max-w-[22rem] text-[15px] leading-relaxed text-white/70 md:text-[17px]">
+                Lewa&apos;s combination of statement and simplicity creates a
+                look as quietly distinct as the woman who wears it.
               </p>
-              <h2 className="font-anton text-[68px] leading-[0.86] tracking-[-0.01em] text-white md:text-[128px]">
-                OUR WORK
-                <span className="lowercase">s</span>
+              <h2 className="font-serif text-[64px] font-medium leading-[0.92] tracking-[-0.01em] text-white md:text-[112px]">
+                Our{" "}
+                <span className="font-italic-accent italic">works</span>
               </h2>
             </div>
 

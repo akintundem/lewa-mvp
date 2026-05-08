@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────────
-   LEWA · design tokens
-   Modeled on premium retail (H&M, COS, &OtherStories, Mejuri).
-   Cream paper background, deep ink, warm gold accent, copper feature.
+   LEWA · design tokens — Editorial Luxury (Vogue / Jacquemus register)
+   Ivory paper + warm bronze + deep ink. Tall serifs, generous air,
+   italic accents, hairline gold underlines. Feminine, not soft.
    ───────────────────────────────────────────────────────────────────── */
 :root {
-  /* Surfaces */
-  --background: #f6f1e7; /* warm cream paper */
+  /* Surfaces — ivory paper, slightly warmer card, deep brown-ink */
+  --background: #fbf6ee; /* ivory paper */
   --card: #fffdf7; /* slightly brighter card */
-  --foreground: #14110f; /* near-black ink */
-  --muted: #6b6157; /* warm grey for secondary text */
-  --subtle: #a39785; /* tertiary / dividers-on-color */
-  --line: #e6dfd1; /* hairline divider */
+  --foreground: #2a1b11; /* deep ink with warmth */
+  --muted: #6b5a4a; /* warm taupe for secondary text */
+  --subtle: #b3a08a; /* tertiary / dividers-on-color */
+  --line: #ead9c3; /* warm ivory hairline */
 
-  /* Brand accent — warm antique gold */
-  --accent: #b08d57;
-  --accent-strong: #8a6c3e;
+  /* Brand accent — antique bronze (Jacquemus-warm, more saturated than gold) */
+  --accent: #b07a4a;
+  --accent-strong: #8a5a32;
+  --rose: #d9b8a3; /* a single feminine accent — used sparingly */
 
-  /* Feature colours used by the OUR WORKS section */
+  /* Feature colours used by the OUR WORKS section (kept; copper hero) */
   --copper-50: #f5e2cf;
   --copper-100: #e3a878;
   --copper-300: #b87a45;
@@ -52,6 +53,7 @@
   /* Brand */
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-rose: var(--rose);
 
   /* Feature */
   --color-copper-50: var(--copper-50);
@@ -64,7 +66,7 @@
   /* Fonts */
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
-  --font-display-bold: var(--font-anton);
+  --font-italic: var(--font-cormorant);
 }
 
 html,
@@ -84,31 +86,40 @@ body {
    Typography utilities (deliberately small set — used everywhere)
    ───────────────────────────────────────────────────────────────────── */
 
-/* Editorial serif — used for product names + section subheads */
+/* Editorial serif — product names, section subheads */
 .font-serif {
   font-family: var(--font-playfair), ui-serif, Georgia, serif;
   letter-spacing: -0.005em;
 }
 
-/* Heavy condensed sans — only the OUR WORKs landing heading */
-.font-anton {
-  font-family: var(--font-anton), Impact, "Helvetica Neue", sans-serif;
+/* Display serif — alias used by page headlines / cart / shop */
+.font-display {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
-/* Tiny uppercase eyebrow label, used above section titles */
+/* Soft italic accent — used for emphasis words in headlines ("our latest *works*") */
+.font-italic-accent {
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Tiny uppercase eyebrow label, above section titles */
 .eyebrow {
   font-size: var(--text-eyebrow);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--muted);
+  color: var(--accent-strong);
 }
 
 /* Spaced caps for buttons + nav links */
 .caps {
   font-size: var(--text-caption);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -116,27 +127,38 @@ body {
 /* Small caption text used inside cards / overlays */
 .caption {
   font-size: var(--text-caption);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
 }
 
-/* Editorial display — used as the main h1 on the home page */
+/* Editorial display — main h1 on the home page. Lighter weight, taller line. */
 .display-xl {
   font-family: var(--font-playfair), ui-serif, Georgia, serif;
-  font-size: clamp(2.75rem, 6vw, 4.75rem);
+  font-size: clamp(2.75rem, 6vw, 5rem);
   line-height: 1.02;
-  letter-spacing: -0.02em;
-  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-weight: 500;
 }
 
-/* Section heading, slightly tighter */
+/* Stacked / centered display treatment — for "THE / SPRING / EDIT" hero copy.
+   Editorial uppercase with a hairline rule between the title and date. */
+.display-editorial {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Section heading — Playfair, 500 weight, tighter line */
 .heading-lg {
   font-family: var(--font-playfair), ui-serif, Georgia, serif;
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  font-weight: 600;
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.005em;
+  font-weight: 500;
 }
 
 /* Body lead paragraph */
@@ -146,16 +168,26 @@ body {
   color: var(--muted);
 }
 
-/* Animated underline used on nav + footer links */
+/* Animated bronze underline used on nav + footer links */
 .gold-underline {
-  background-image: linear-gradient(currentColor, currentColor);
+  background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 0% 1px;
   background-repeat: no-repeat;
   background-position: 0 100%;
-  transition: background-size 250ms ease;
+  transition: background-size 280ms ease;
 }
 .gold-underline:hover {
   background-size: 100% 1px;
+}
+
+/* Static thin hairline under a word — used inline ("EDIT" → underline → "2026") */
+.rule-bronze::after {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 1px;
+  margin: 0.6rem auto 0;
+  background: var(--accent);
 }
 
 /* Primary button — solid ink, tight spaced caps, subtle press effect */

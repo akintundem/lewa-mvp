@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart-provider";
 import { CartDrawer } from "@/components/cart-drawer";
@@ -7,7 +7,10 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AnnouncementBar } from "@/components/announcement-bar";
 
-// Inter for body, Playfair for editorial display headings.
+// Editorial-luxury type system:
+//   Inter              — body / UI / spaced-caps labels (clean, neutral).
+//   Playfair Display   — primary editorial serif for display headings.
+//   Cormorant Garamond — softer feminine serif for italic accent words.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -20,10 +23,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-// Heavy condensed sans for the "OUR WORKs" display heading on the landing page.
-const anton = Anton({
-  variable: "--font-anton",
-  weight: "400",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -45,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${anton.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <CartProvider>
