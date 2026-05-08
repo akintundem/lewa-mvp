@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────────────
+   LEWA · design tokens
+   Modeled on premium retail (H&M, COS, &OtherStories, Mejuri).
+   Cream paper background, deep ink, warm gold accent, copper feature.
+   ───────────────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --background: #f6f1e7; /* warm cream paper */
+  --card: #fffdf7; /* slightly brighter card */
+  --foreground: #14110f; /* near-black ink */
+  --muted: #6b6157; /* warm grey for secondary text */
+  --subtle: #a39785; /* tertiary / dividers-on-color */
+  --line: #e6dfd1; /* hairline divider */
+
+  /* Brand accent — warm antique gold */
+  --accent: #b08d57;
+  --accent-strong: #8a6c3e;
+
+  /* Feature colours used by the OUR WORKS section */
+  --copper-50: #f5e2cf;
+  --copper-100: #e3a878;
+  --copper-300: #b87a45;
+  --copper-500: #7a4422;
+  --copper-700: #3a1d0a;
+  --noir: #0a0807; /* the panel black */
+
+  /* Type scale (rem). Used as inline class targets via @theme below. */
+  --text-eyebrow: 0.6875rem;   /* 11 — uppercase labels */
+  --text-caption: 0.75rem;     /* 12 — small caption */
+  --text-body-sm: 0.8125rem;   /* 13 */
+  --text-body: 0.9375rem;      /* 15 — base body */
+  --text-lead: 1.0625rem;      /* 17 */
+  --text-h5: 1.25rem;          /* 20 */
+  --text-h4: 1.5rem;           /* 24 */
+  --text-h3: 2rem;             /* 32 */
+  --text-h2: 2.75rem;          /* 44 */
+  --text-h1: 3.75rem;          /* 60 */
+  --text-display: 5rem;        /* 80 */
 }
 
 @theme inline {
+  /* Surfaces */
   --color-background: var(--background);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+
+  /* Brand */
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+
+  /* Feature */
+  --color-copper-50: var(--copper-50);
+  --color-copper-100: var(--copper-100);
+  --color-copper-300: var(--copper-300);
+  --color-copper-500: var(--copper-500);
+  --color-copper-700: var(--copper-700);
+  --color-noir: var(--noir);
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-display-bold: var(--font-anton);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11"; /* tighter Inter alternates */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   Typography utilities (deliberately small set — used everywhere)
+   ───────────────────────────────────────────────────────────────────── */
+
+/* Editorial serif — used for product names + section subheads */
+.font-serif {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  letter-spacing: -0.005em;
+}
+
+/* Heavy condensed sans — only the OUR WORKs landing heading */
+.font-anton {
+  font-family: var(--font-anton), Impact, "Helvetica Neue", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Tiny uppercase eyebrow label, used above section titles */
+.eyebrow {
+  font-size: var(--text-eyebrow);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Spaced caps for buttons + nav links */
+.caps {
+  font-size: var(--text-caption);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Small caption text used inside cards / overlays */
+.caption {
+  font-size: var(--text-caption);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Editorial display — used as the main h1 on the home page */
+.display-xl {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  font-size: clamp(2.75rem, 6vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* Section heading, slightly tighter */
+.heading-lg {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* Body lead paragraph */
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Animated underline used on nav + footer links */
+.gold-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 250ms ease;
+}
+.gold-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Primary button — solid ink, tight spaced caps, subtle press effect */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.95rem 1.5rem;
+  font-size: var(--text-caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition:
+    background 200ms ease,
+    transform 100ms ease;
+}
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Ghost / secondary button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--foreground);
+  padding: 0.95rem 1.5rem;
+  font-size: var(--text-caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid color-mix(in srgb, var(--foreground) 18%, transparent);
+  transition: border-color 200ms ease;
+}
+.btn-ghost:hover {
+  border-color: var(--foreground);
+}
+
+/* Hairline horizontal rule used as section delimiter */
+.hairline {
+  height: 1px;
+  background: var(--line);
 }
